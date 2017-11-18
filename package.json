@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "WebDesign-Master.ru",
+  "author": "Dmytro Harazdovskiy",
   "license": "ISC",
   "devDependencies": {
     "browser-sync": "^2.18.13",

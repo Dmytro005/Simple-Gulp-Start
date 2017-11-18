@@ -1,15 +1,14 @@
 var gulp           = require('gulp'),
-		gutil          = require('gulp-util' ),
 		sass           = require('gulp-sass'),
 		browserSync    = require('browser-sync'),
 		concat         = require('gulp-concat'),
 		uglify         = require('gulp-uglify'),
-		cleanCSS       = require('gulp-clean-css'),
+		cleanCSS       = require('gulp-clean-css'), 	//мініфікує css
 		rename         = require('gulp-rename'),
 		autoprefixer   = require('gulp-autoprefixer'),
 		notify         = require("gulp-notify");
 
-// Сервер и автообновление страницы Browsersync
+// Сервер і автооновлення Browsersync
 gulp.task('browser-sync', function() {
 	browserSync({
 		server: {
@@ -21,14 +20,14 @@ gulp.task('browser-sync', function() {
 	});
 });
 
-// Минификация пользовательских скриптов проекта и JS библиотек в один файл
+// Мнініфікація користувацьких скріптів пректу і JS бібліотек в один файл
 gulp.task('js', function() {
 	return gulp.src([
 		'app/libs/jquery/dist/jquery.min.js',
-		'app/js/common.js', // Всегда в конце
+		'app/js/common.js', // ЗАвджи в кінці
 		])
 	.pipe(concat('scripts.min.js'))
-	.pipe(uglify()) // Минимизировать весь js (на выбор)
+	.pipe(uglify()) // мініфікувати весь js
 	.pipe(gulp.dest('app/js'))
 	.pipe(browserSync.reload({stream: true}));
 });
@@ -37,8 +36,8 @@ gulp.task('sass', function() {
 	return gulp.src('app/sass/**/*.sass')
 	.pipe(sass({outputStyle: 'expand'}).on("error", notify.onError()))
 	.pipe(rename({suffix: '.min', prefix : ''}))
-	.pipe(autoprefixer(['last 15 versions']))
-	.pipe(cleanCSS()) // Опционально, закомментировать при отладке
+	.pipe(autoprefixer(['last 20 versions']))
+	.pipe(cleanCSS())
 	.pipe(gulp.dest('app/css'))
 	.pipe(browserSync.reload({stream: true}));
 });
