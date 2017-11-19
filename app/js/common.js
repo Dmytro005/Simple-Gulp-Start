@@ -1,5 +1,5 @@
 $(function() {
 
-	console.log("Dima");
+	console.log("common.js");
 
 });

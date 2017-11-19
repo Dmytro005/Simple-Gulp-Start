@@ -10,9 +10,11 @@ var gulp 			= require('gulp'),
     imagemin 		= require("gulp-imagemin");
     del            	= require('del');
 
-//шляхи до всіх js бібліотек 
+//шляхи до всіх js файлів кортрі будуть об'єднюватись'
 var JSlibs = [
     'app/libs/jquery/dist/jquery.min.js',
+    'app/js/second.js',
+    'app/js/common.js'
 ]
 
 // Сервер і автооновлення Browsersync
@@ -29,10 +31,7 @@ gulp.task('browser-sync', function() {
 
 // Мнініфікація користувацьких скріптів пректу і JS бібліотек в один файл
 gulp.task('js', () => {
-    return gulp.src([
-            JSlibs.toString(),
-            'app/js/common.js', // Зaвджи в кінці
-        ])
+    return gulp.src(JSlibs)
         .pipe(concat('scripts.min.js'))
         .pipe(uglify()) // мініфікувати весь js
         .pipe(gulp.dest('app/js'))
@@ -51,7 +50,7 @@ gulp.task('sass', () => {
 
 gulp.task('watch', ['sass', 'js', 'browser-sync'], () => {
     gulp.watch('app/sass/**/*.sass', ['sass']);
-    gulp.watch(['libs/**/*.js', 'app/js/common.js'], ['js']);
+    gulp.watch('app/js/common.js', ['js']);
     gulp.watch('app/*.html', browserSync.reload);
 });
 
